@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tax Automation Agent - Complete GST Compliance Solution | Pravin Kumar</title>
+    <meta name="description" content="Complete GST and business tax automation solution by Pravin Kumar. Automated compliance tracking, deadline management, penalty prevention. ₹10,000/month professional service.">
+
+    <!-- Security Headers -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' https: data: blob:;">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #10b981;
+            --accent: #f59e0b;
+            --success: #059669;
+            --danger: #dc2626;
+            --warning: #d97706;
+            --text-primary: #1f2937;
+            --text-secondary: #6b7280;
+            --text-light: #9ca3af;
+            --bg-white: #ffffff;
+            --bg-light: #f8fafc;
+            --bg-gray: #f1f5f9;
+            --border: #e2e8f0;
+            --border-light: #f1f5f9;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            overflow-x: hidden;
+            background: var(--bg-white);
+        }
+
+        /* Loading Screen */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.8s ease;
+        }
+
+        .loading-spinner {
+            width: 60px;
+            height: 60px;
+            border: 4px solid rgba(255, 255, 255, 0.2);
+            border-top: 4px solid white;
+            border-radius: 50%;
+            animation: spin 1.2s linear infinite;
+            margin-bottom: 1rem;
+        }
+
+        .loading-text {
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-light);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            height: 70px;
+            transition: all 0.3s ease;
+        }
+
+        .header.scrolled {
+            box-shadow: var(--shadow-lg);
+            background: rgba(255, 255, 255, 0.98);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+            transition: transform 0.2s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .logo-icon {
+            font-size: 1.8rem;
+        }
+
+        .header-cta {
+            background: var(--primary);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .header-cta:hover {
+            background: var(--primary-dark);
+            transform: translateY(-1px);
+            box-shadow: var(--shadow);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 140px 0 80px;
+            position: relative;
+            overflow: hidden;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.4;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            padding: 8px 16px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .hero h1 {
+            font-size: clamp(2.8rem, 5vw, 4.5rem);
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            line-height: 1.1;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.1rem, 2.5vw, 1.3rem);
+            margin-bottom: 2.5rem;
+            opacity: 0.95;
+            line-height: 1.6;
+            font-weight: 400;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2.5rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 16px 32px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        .btn-primary {
+            background: var(--secondary);
+            color: white;
+            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.3);
+        }
+
+        .btn-primary:hover {
+            background: var(--success);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 35px rgba(16, 185, 129, 0.4);
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+            line-height: 1.2;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Form Section */
+        .form-section {
+            background: white;
+            padding: 100px 0;
+        }
+
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 3rem 2.5rem;
+            border-radius: 25px;
+            box-shadow: var(--shadow-xl);
+            border: 1px solid var(--border-light);
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .form-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .form-subtitle {
+            color: var(--text-secondary);
+            font-size: 1rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            font-size: 0.95rem;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: all 0.3s ease;
+            background: var(--bg-white);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+            transform: translateY(-1px);
+        }
+
+        .form-submit {
+            width: 100%;
+            background: var(--primary);
+            color: white;
+            padding: 16px 24px;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: inherit;
+            margin-top: 1rem;
+        }
+
+        .form-submit:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .form-submit:disabled {
+            background: var(--text-light);
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Messages */
+        .message {
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            margin-top: 1rem;
+            display: none;
+            font-weight: 500;
+        }
+
+        .success-message {
+            background: #d1fae5;
+            color: #065f46;
+            border: 1px solid #a7f3d0;
+        }
+
+        .error-message {
+            background: #fee2e2;
+            color: #991b1b;
+            border: 1px solid #fecaca;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--text-primary);
+            color: white;
+            padding: 4rem 0 2rem;
+        }
+
+        .footer-content {
+            text-align: center;
+        }
+
+        .footer-section h4 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--secondary);
+        }
+
+        .footer-section p {
+            color: #9ca3af;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid #4b5563;
+            color: #9ca3af;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 120px 0 60px;
+                min-height: 90vh;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .form-container {
+                padding: 2rem 1.5rem;
+                margin: 0 10px;
+            }
+
+            .section {
+                padding: 60px 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 15px;
+            }
+
+            .hero {
+                padding: 110px 15px 50px;
+            }
+
+            .section {
+                padding: 50px 0;
+            }
+
+            .form-container {
+                padding: 2rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-spinner"></div>
+        <div class="loading-text">Loading Tax Automation System...</div>
+    </div>
+
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="#" class="logo">
+                    <span class="logo-icon">🚀</span>
+                    <span>Tax Automation Agent</span>
+                </a>
+                <a href="#get-started" class="header-cta">Start Now - ₹10,000/month</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <span>🇮🇳</span>
+                    <span>Made for Indian Businesses by Pravin Kumar</span>
+                </div>
+
+                <h1>Complete GST Compliance<br>Automation Solution</h1>
+
+                <p class="hero-subtitle">
+                    Automate GST compliance, income tax management, and corporate tax filings with AI-powered intelligence. Save 25+ hours weekly and prevent costly penalties with our comprehensive tax automation system.
+                </p>
+
+                <div class="hero-buttons">
+                    <a href="#get-started" class="btn btn-primary">
+                        <span>🚀</span>
+                        <span>Start Automation - ₹10,000/month</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Form Section -->
+    <section id="get-started" class="section form-section">
+        <div class="container">
+            <div class="form-container">
+                <div class="form-header">
+                    <h2 class="form-title">Start Your Tax Automation Journey</h2>
+                    <p class="form-subtitle">Join businesses already saving time and money with automated tax compliance</p>
+                </div>
+
+                <form id="taxAutomationForm" class="tax-form">
+                    <div class="form-group">
+                        <label for="fullName" class="form-label">Full Name *</label>
+                        <input type="text" id="fullName" name="fullName" class="form-control" required placeholder="Enter your full name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email" class="form-label">Professional Email *</label>
+                        <input type="email" id="email" name="email" class="form-control" required placeholder="your.email@company.com">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone" class="form-label">Mobile Number *</label>
+                        <input type="tel" id="phone" name="phone" class="form-control" pattern="[0-9]{10}" required placeholder="10-digit mobile number">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="profession" class="form-label">Professional Category *</label>
+                        <select id="profession" name="profession" class="form-control" required>
+                            <option value="">Select your profession</option>
+                            <option value="chartered_accountant">Chartered Accountant</option>
+                            <option value="tax_consultant">Tax Consultant</option>
+                            <option value="ca_firm_partner">CA Firm Partner</option>
+                            <option value="business_owner">Business Owner</option>
+                            <option value="cfo_finance_head">CFO/Finance Head</option>
+                            <option value="accounting_manager">Accounting Manager</option>
+                            <option value="gst_practitioner">GST Practitioner</option>
+                            <option value="other">Other Tax Professional</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="businessType" class="form-label">Business Type *</label>
+                        <select id="businessType" name="businessType" class="form-control" required>
+                            <option value="">Select business type</option>
+                            <option value="proprietorship">Proprietorship</option>
+                            <option value="partnership">Partnership</option>
+                            <option value="llp">Limited Liability Partnership (LLP)</option>
+                            <option value="private_limited">Private Limited Company</option>
+                            <option value="public_limited">Public Limited Company</option>
+                            <option value="trust_ngo">Trust/NGO</option>
+                            <option value="multiple_entities">Multiple Entities</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="annualTurnover" class="form-label">Annual Turnover Range *</label>
+                        <select id="annualTurnover" name="annualTurnover" class="form-control" required>
+                            <option value="">Select turnover range</option>
+                            <option value="under_20_lakh">Under ₹20 Lakh</option>
+                            <option value="20_lakh_to_75_lakh">₹20 Lakh - ₹75 Lakh</option>
+                            <option value="75_lakh_to_5_crore">₹75 Lakh - ₹5 Crore</option>
+                            <option value="5_crore_to_20_crore">₹5 Crore - ₹20 Crore</option>
+                            <option value="above_20_crore">Above ₹20 Crore</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="city" class="form-label">City *</label>
+                        <input type="text" id="city" name="city" class="form-control" required placeholder="Your city">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="taxChallenges" class="form-label">Biggest Tax Compliance Challenge</label>
+                        <textarea id="taxChallenges" name="taxChallenges" class="form-control" rows="3" placeholder="e.g., Missing GST deadlines, complex income tax calculations, penalty issues..."></textarea>
+                    </div>
+
+                    <button type="submit" class="form-submit" id="submitBtn">
+                        💳 Start Tax Automation - ₹10,000/month
+                    </button>
+
+                    <div class="success-message message" id="successMessage">
+                        ✅ Success! Welcome to Tax Automation. Check your email for dashboard access.
+                    </div>
+
+                    <div class="error-message message" id="errorMessage">
+                        ❌ Something went wrong. Please try again or contact support at pravinjeyavel25@gmail.com
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Tax Automation Agent</h4>
+                    <p>Complete business tax automation solution built by Pravin Kumar. Serving Indian businesses and tax professionals with cutting-edge automation technology that saves time and prevents penalties.</p>
+                    <p>
+                        📧 Email: pravinjeyavel25@gmail.com<br>
+                        📱 WhatsApp: +91-XXXX-XXXX-XX<br>
+                        🕒 Hours: 9 AM - 7 PM IST
+                    </p>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 Tax Automation Agent by Pravin Kumar. Made in India 🇮🇳 for Indian Businesses and Tax Professionals.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Page initialization
+        document.addEventListener('DOMContentLoaded', function() {
+            // Remove loading screen
+            setTimeout(() => {
+                const loadingScreen = document.getElementById('loadingScreen');
+                loadingScreen.style.opacity = '0';
+                setTimeout(() => {
+                    loadingScreen.style.display = 'none';
+                }, 800);
+            }, 1500);
+
+            // Header scroll effects
+            const header = document.getElementById('header');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        const headerHeight = 70;
+                        const targetPosition = target.offsetTop - headerHeight;
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // Form handling
+            const form = document.getElementById('taxAutomationForm');
+            const submitBtn = document.getElementById('submitBtn');
+            const successMessage = document.getElementById('successMessage');
+            const errorMessage = document.getElementById('errorMessage');
+
+            // Form submission with direct processing (no Razorpay for now)
+            form.addEventListener('submit', async function(e) {
+                e.preventDefault();
+
+                // Hide previous messages
+                successMessage.style.display = 'none';
+                errorMessage.style.display = 'none';
+
+                // Validate form
+                if (!form.checkValidity()) {
+                    form.reportValidity();
+                    return;
+                }
+
+                // Show loading state
+                submitBtn.disabled = true;
+                submitBtn.textContent = '⏳ Processing your registration...';
+
+                try {
+                    // Get form data
+                    const formData = new FormData(form);
+                    const userData = Object.fromEntries(formData.entries());
+                    userData.timestamp = new Date().toISOString();
+
+                    // Add test payment data for backend processing
+                    const completeData = {
+                        ...userData,
+                        paymentId: 'TEST-' + Date.now(),
+                        orderId: 'ORDER-' + Date.now(),
+                        paymentStatus: 'completed',
+                        amount: 10000,
+                        currency: 'INR',
+                        source: 'tax-automation-landing-basic',
+                        userAgent: navigator.userAgent,
+                        referrer: document.referrer || 'direct'
+                    };
+
+                    // Send to n8n webhook
+                    const response = await fetch('https://aitronics.app.n8n.cloud/webhook/tax-payment', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-Requested-With': 'XMLHttpRequest'
+                        },
+                        body: JSON.stringify(completeData)
+                    });
+
+                    if (!response.ok) {
+                        throw new Error('Registration processing failed');
+                    }
+
+                    const result = await response.json();
+
+                    // Success
+                    successMessage.style.display = 'block';
+                    form.style.opacity = '0.5';
+
+                    // Scroll to success message
+                    successMessage.scrollIntoView({ behavior: 'smooth' });
+
+                    console.log('Registration successful:', result);
+
+                } catch (error) {
+                    console.error('Registration error:', error);
+                    errorMessage.style.display = 'block';
+                    errorMessage.innerHTML = `❌ ${error.message}. Please contact support if the issue persists.<br>Support: pravinjeyavel25@gmail.com`;
+
+                } finally {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = '💳 Start Tax Automation - ₹10,000/month';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
